@@ -19,6 +19,10 @@ jobs:
       REST_API_KEY: ${{ secrets.REST_API_KEY }}
       JWT_SECRET: ${{ secrets.JWT_SECRET }}
       REDIRECT_URI:  ${{ secrets.REDIRECT_URI }}
+      BUCKET_NAME: ${{ secrets.BUCKET_NAME }}
+      ACCESS_KEY: ${{ secrets.ACCESS_KEY }}
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      REGION:  ${{ secrets.REGION }}
 
     steps:
       - uses: actions/checkout@v4
@@ -72,6 +76,11 @@ jobs:
             echo "REST_API_KEY=${{ secrets.REST_API_KEY }}" >> ~/.env
             echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> ~/.env
             echo "REDIRECT_URI=${{ secrets.REDIRECT_URI }}" >> ~/.env
+            echo "BUCKET_NAME=${{ secrets.BUCKET_NAME }}" >> ~/.env
+            echo "ACCESS_KEY=${{ secrets.ACCESS_KEY }}" >> ~/.env
+            echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> ~/.env
+            echo "REGION=${{ secrets.REGION }}" >> ~/.env
+            
             
             # 새 컨테이너 실행 및 환경 변수 전달
             sudo docker run -d --log-driver=syslog --name docker-test -p 8080:8080 \
